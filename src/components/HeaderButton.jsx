@@ -1,5 +1,7 @@
 import { ShoppingCartOutlined } from "@material-ui/icons";
+import { useContext } from "react";
 import styled from "styled-components"
+import CartContext from "../store/cart-context"
 
 
 const Container = styled.button`
@@ -33,11 +35,16 @@ const CartNumber = styled.span`
 `;
 
 const HeaderButton = ({onShowCart}) => {
+  const cartCtx = useContext(CartContext)
+
+  const numberOfCartItems = cartCtx.items.reduce((curNumber, item) => {
+    return curNumber + item.amount
+  }, 0)
   return (
     <Container onClick={onShowCart}>
         <ShoppingCartOutlined style={{width: '1.35rem', height: '1.35rem', marginRight: '0.5rem'}} />
         <CartText>Your Cart</CartText>
-        <CartNumber>3</CartNumber>
+        <CartNumber>{numberOfCartItems}</CartNumber>
     </Container>
   )
 }

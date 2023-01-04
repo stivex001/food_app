@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import Modal from "../UI/Modal";
+import CartContext from "../../store/cart-context"
+import { useContext } from "react";
 
 // const Container = styled.div``;
 
@@ -43,9 +45,14 @@ const Button = styled.button`
 
 
 const Cart = ({onCloseCart}) => {
+  const cartCtx = useContext(CartContext)
+
+  const totalAmount = `#${cartCtx.totalAmount.toFixed(2)}`
+  const hasItems = cartCtx.items.length > 0
+
   const cartItems = (
     <ListItem>
-      {[{ id: "1", name: "chinchin", amount: "2", price: 500 }].map((item) => (
+      {cartCtx.items.map((item) => (
         <li>{item.name}</li>
       ))}
     </ListItem>
@@ -55,11 +62,11 @@ const Cart = ({onCloseCart}) => {
       {cartItems}
       <Total>
         <span>Total Amount</span>
-        <span>30</span>
+        <span>{totalAmount}</span>
       </Total>
       <ButtonContainer backgroundColor>
         <Button onClick={onCloseCart}>Close</Button>
-        <Button type="filled">Order</Button>
+        {hasItems && <Button type="filled">Order</Button>}
       </ButtonContainer>
     </Modal>
   );

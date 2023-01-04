@@ -2,7 +2,7 @@ import styled from "styled-components";
 import HeaderButton from "../HeaderButton";
 
 const Container = styled.div`
-  // background-color: red;
+  
 `;
 
 const HeaderContainer = styled.header`
@@ -18,13 +18,12 @@ color: white;
   top: 0;
   left: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25)
-  z-index: 10;
+  z-index: 999;
 `;
 
 const Text = styled.h1`
   // font-size: 2rem;
 `;
-
 
 const ImageContainer = styled.div`
   width: 100%;
@@ -41,7 +40,7 @@ const Image = styled.img`
   transform: rotateZ(-5deg) translateY(-4rem) translateX(-1rem);
 `;
 
-const Header = ({onShowCart}) => {
+const Header = ({ onShowCart }) => {
   return (
     <Container>
       <HeaderContainer>
